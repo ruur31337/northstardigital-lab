@@ -1,0 +1,52 @@
+# Node
+node_modules/
+npm-debug.log*
+.npm
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+.venv/
+venv/
+
+# OVA build output — file is too large for git
+build/output/
+*.ova
+
+# SQLite runtime files (seeded at container start — not committed)
+*.db
+*.db-wal
+*.db-shm
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Docker build cache artefacts
+.dockerignore
+
+# Source files — images on Docker Hub, source stays local
+api/
+blog/
+main-web/
+nginx/
+portal/
+build/

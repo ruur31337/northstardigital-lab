@@ -1,0 +1,201 @@
+<title>NorthstarDigital Lab</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0b0f1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  svg { max-width: 100%; height: auto; display: block; }
+</style>
+
+<svg viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;max-width:960px"
+     role="img" aria-label="NorthstarDigital lab network topology">
+  <defs>
+    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#1e2533"/>
+    </pattern>
+    <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#4a5568"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect width="960" height="520" fill="#0b0f1a"/>
+  <rect width="960" height="520" fill="url(#dots)" opacity=".8"/>
+
+  <!-- Zone: EXT -->
+  <rect x="12" y="12" width="220" height="496" rx="10"
+        fill="rgba(15,20,35,0.6)" stroke="#2a3347" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="28" y="34" font-family="JetBrains Mono,monospace" font-size="10"
+        fill="#4a5568" letter-spacing=".18em">EXT</text>
+
+  <!-- Zone: DEFAULT NETWORK -->
+  <rect x="246" y="12" width="480" height="496" rx="10"
+        fill="rgba(15,20,35,0.6)" stroke="#2a3347" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="262" y="34" font-family="JetBrains Mono,monospace" font-size="10"
+        fill="#4a5568" letter-spacing=".12em">DEFAULT NETWORK</text>
+
+  <!-- Zone: NSD-INTERNAL -->
+  <rect x="740" y="12" width="208" height="496" rx="10"
+        fill="rgba(15,20,35,0.6)" stroke="#2a3347" stroke-width="1" stroke-dasharray="6,4"/>
+  <text x="756" y="34" font-family="JetBrains Mono,monospace" font-size="10"
+        fill="#4a5568" letter-spacing=".1em">NSD-INTERNAL</text>
+  <text x="756" y="48" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#2d3748">172.28.0.0/24</text>
+
+  <!-- ATTACKER -->
+  <rect x="28" y="180" width="188" height="110" rx="8"
+        fill="#111827" stroke="#2d3748" stroke-width="1.2"/>
+  <rect x="46" y="198" width="28" height="20" rx="2"
+        fill="none" stroke="#4a5568" stroke-width="1.5"/>
+  <line x1="60" y1="218" x2="60" y2="224" stroke="#4a5568" stroke-width="1.5"/>
+  <line x1="54" y1="224" x2="66" y2="224" stroke="#4a5568" stroke-width="1.5"/>
+  <text x="82" y="210" font-family="JetBrains Mono,monospace" font-size="12"
+        font-weight="700" fill="#e2e8f0">ATTACKER</text>
+  <text x="82" y="225" font-family="JetBrains Mono,monospace" font-size="10"
+        fill="#4a5568">192.168.111.x</text>
+  <line x1="42" y1="238" x2="202" y2="238" stroke="#1e2533" stroke-width="1"/>
+  <text x="42" y="254" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">add to /etc/hosts:</text>
+  <text x="42" y="268" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#3a4a6a">192.168.111.100 *.nsd</text>
+
+  <!-- attacker → nginx arrow -->
+  <line x1="216" y1="232" x2="374" y2="90"
+        stroke="#4a5568" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+
+  <!-- HTTP :80 label -->
+  <line x1="486" y1="108" x2="486" y2="148"
+        stroke="#4a5568" stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="493" y="132" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">HTTP :80</text>
+
+  <!-- NGINX -->
+  <rect x="374" y="50" width="224" height="58" rx="8"
+        fill="#111827" stroke="#2d3748" stroke-width="1.2"/>
+  <rect x="374" y="50" width="8" height="58" rx="4" fill="#4a5568"/>
+  <rect x="508" y="58" width="82" height="18" rx="9"
+        fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <circle cx="520" cy="67" r="3" fill="#34d399"/>
+  <text x="527" y="71" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#34d399">Running</text>
+  <text x="392" y="74" font-family="JetBrains Mono,monospace" font-size="12"
+        font-weight="700" fill="#e2e8f0">nginx</text>
+  <text x="392" y="89" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">reverse proxy  :80  /  routes all 4 domains</text>
+
+  <!-- nginx → apps -->
+  <line x1="430" y1="108" x2="336" y2="200"
+        stroke="#2d3748" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="486" y1="108" x2="486" y2="200"
+        stroke="#2d3748" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="430" y1="108" x2="336" y2="340"
+        stroke="#2d3748" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+  <line x1="542" y1="108" x2="636" y2="200"
+        stroke="#2d3748" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="542" y1="108" x2="636" y2="340"
+        stroke="#2d3748" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arr)"/>
+
+  <!-- MAIN-WEB -->
+  <rect x="262" y="200" width="200" height="108" rx="8"
+        fill="#111827" stroke="#2d3748" stroke-width="1.2"/>
+  <rect x="278" y="216" width="10" height="10" rx="2" fill="#3b82f6"/>
+  <rect x="291" y="216" width="10" height="10" rx="2" fill="#60a5fa"/>
+  <rect x="278" y="229" width="10" height="10" rx="2" fill="#60a5fa"/>
+  <rect x="291" y="229" width="10" height="10" rx="2" fill="#93c5fd"/>
+  <text x="308" y="222" font-family="JetBrains Mono,monospace" font-size="11"
+        font-weight="700" fill="#e2e8f0">MAIN-WEB</text>
+  <text x="278" y="254" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#34d399">northstardigital.com</text>
+  <line x1="278" y1="262" x2="454" y2="262" stroke="#1e2533" stroke-width="1"/>
+  <text x="278" y="276" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">Node.js  /  React  /  SQLite</text>
+  <text x="278" y="291" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">:3000</text>
+
+  <!-- BLOG -->
+  <rect x="262" y="340" width="200" height="108" rx="8"
+        fill="#111827" stroke="#2d3748" stroke-width="1.2"/>
+  <circle cx="290" cy="372" r="14" fill="#21759b" opacity=".9"/>
+  <text x="290" y="377" text-anchor="middle" font-family="Georgia,serif"
+        font-size="14" font-weight="700" fill="#fff">W</text>
+  <text x="312" y="362" font-family="JetBrains Mono,monospace" font-size="11"
+        font-weight="700" fill="#e2e8f0">BLOG</text>
+  <text x="278" y="394" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#f87171">blog.northstardigital.com</text>
+  <line x1="278" y1="402" x2="454" y2="402" stroke="#1e2533" stroke-width="1"/>
+  <text x="278" y="416" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">WordPress  /  MySQL</text>
+  <text x="278" y="431" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">:8080</text>
+
+  <!-- API -->
+  <rect x="486" y="200" width="200" height="108" rx="8"
+        fill="#111827" stroke="#2d3748" stroke-width="1.2"/>
+  <rect x="502" y="216" width="10" height="10" rx="2" fill="#10b981"/>
+  <rect x="515" y="216" width="10" height="10" rx="2" fill="#34d399"/>
+  <rect x="502" y="229" width="10" height="10" rx="2" fill="#34d399"/>
+  <rect x="515" y="229" width="10" height="10" rx="2" fill="#6ee7b7"/>
+  <rect x="628" y="208" width="82" height="18" rx="9"
+        fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <circle cx="640" cy="217" r="3" fill="#34d399"/>
+  <text x="647" y="221" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#34d399">Running</text>
+  <text x="532" y="222" font-family="JetBrains Mono,monospace" font-size="11"
+        font-weight="700" fill="#e2e8f0">API</text>
+  <text x="502" y="254" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#34d399">api.northstardigital.com</text>
+  <line x1="502" y1="262" x2="678" y2="262" stroke="#1e2533" stroke-width="1"/>
+  <text x="502" y="276" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">Node.js  /  REST  /  SQLite</text>
+  <text x="502" y="291" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">:4000</text>
+
+  <!-- PORTAL -->
+  <rect x="486" y="340" width="200" height="108" rx="8"
+        fill="#111827" stroke="#7c3aed" stroke-width="1.5"/>
+  <rect x="502" y="356" width="10" height="10" rx="2" fill="#7c3aed"/>
+  <rect x="515" y="356" width="10" height="10" rx="2" fill="#8b5cf6"/>
+  <rect x="502" y="369" width="10" height="10" rx="2" fill="#8b5cf6"/>
+  <rect x="515" y="369" width="10" height="10" rx="2" fill="#a78bfa"/>
+  <rect x="628" y="348" width="82" height="18" rx="9"
+        fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <circle cx="640" cy="357" r="3" fill="#34d399"/>
+  <text x="647" y="361" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#34d399">Running</text>
+  <text x="532" y="362" font-family="JetBrains Mono,monospace" font-size="11"
+        font-weight="700" fill="#e2e8f0">PORTAL</text>
+  <text x="502" y="394" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#a78bfa">portal.northstardigital.com</text>
+  <line x1="502" y1="402" x2="678" y2="402" stroke="#1e2533" stroke-width="1"/>
+  <text x="502" y="416" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">Python  /  Flask</text>
+  <text x="502" y="431" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">:8081</text>
+
+  <!-- METADATA-SVC -->
+  <rect x="756" y="200" width="180" height="108" rx="8"
+        fill="#111827" stroke="#2d3748" stroke-width="1.2"/>
+  <rect x="770" y="216" width="10" height="10" rx="2" fill="#f59e0b"/>
+  <rect x="783" y="216" width="10" height="10" rx="2" fill="#fbbf24"/>
+  <rect x="770" y="229" width="10" height="10" rx="2" fill="#fbbf24"/>
+  <rect x="783" y="229" width="10" height="10" rx="2" fill="#fcd34d"/>
+  <rect x="856" y="208" width="72" height="18" rx="9"
+        fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+  <circle cx="868" cy="217" r="3" fill="#34d399"/>
+  <text x="875" y="221" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#34d399">Running</text>
+  <text x="800" y="222" font-family="JetBrains Mono,monospace" font-size="10"
+        font-weight="700" fill="#e2e8f0">METADATA-SVC</text>
+  <text x="770" y="254" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#fbbf24">172.28.0.10:80</text>
+  <line x1="770" y1="262" x2="928" y2="262" stroke="#1e2533" stroke-width="1"/>
+  <text x="770" y="276" font-family="JetBrains Mono,monospace" font-size="9"
+        fill="#4a5568">AWS IMDSv1 mock</text>
+</svg>
